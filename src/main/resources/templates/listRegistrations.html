@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>All Registrations</title>
+    <style type="text/css">
+        body {
+            width: 900px;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, td, th {
+            border: 1px solid #333;
+        }
+        th {
+            background-color: #2E86C1;
+            color: white;
+            padding: 10px;
+        }
+        td {
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>All Registrations</h1>
+
+<table th:unless="${#lists.isEmpty(registrations)}">
+    <tr>
+        <th>#</th>
+        <th>Workshop</th>
+        <th>Participant</th>
+        <th>Email</th>
+        <th>Seats</th>
+    </tr>
+    <tr th:each="r, stat : ${registrations}">
+        <td th:text="${stat.count}"></td>
+        <td th:text="${r.workshopTitle}"></td>
+        <td th:text="${r.participantName}"></td>
+        <td th:text="${r.participantEmail}"></td>
+        <td th:text="${r.numberOfSeats}"></td>
+    </tr>
+</table>
+
+<p><a th:href="@{/workshops}">Back to workshops</a></p>
+</body>
+</html>
